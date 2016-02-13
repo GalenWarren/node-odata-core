@@ -1,6 +1,12 @@
 export class Test {
 
-  test() { return 1; }
+  test() {
+    var x = 0;
+    if (x == 1) {
+      return 0;
+    }
+    return 1;
+  }
 
 
 }
