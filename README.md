@@ -1,1 +1,1 @@
-# node-odata-server
+# node-odata-core
