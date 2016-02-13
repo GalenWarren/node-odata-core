@@ -1,0 +1,41 @@
+{
+  "name": "node-odata-core",
+  "version": "0.0.1",
+  "description": "OData Library for Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- test/**/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GalenWarren/node-odata-core.git"
+  },
+  "keywords": [
+    "node",
+    "odata"
+  ],
+  "author": "Galen Warren",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/GalenWarren/node-odata-core/issues"
+  },
+  "homepage": "https://github.com/GalenWarren/node-odata-core#readme",
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-istanbul": "^0.6.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-register": "^6.5.2",
+    "chai": "^3.5.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-changed": "^1.3.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "mocha": "^2.4.5",
+    "require-dir": "^0.3.0",
+    "sinon": "^1.17.3"
+  }
+}

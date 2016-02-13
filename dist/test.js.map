@@ -1,0 +1,1 @@
+{"version":3,"sources":["test.js"],"names":[],"mappings":";;;;;;;;;;IAAa;;;;;;;2BAEJ;AAAE,aAAO,CAAP,CAAF;;;;SAFI","file":"test.js","sourcesContent":["export class Test {\n\n  test() { return 1; }\n\n\n}\n"],"sourceRoot":"/source/"}
