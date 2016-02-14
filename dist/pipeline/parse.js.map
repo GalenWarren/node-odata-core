@@ -1,0 +1,1 @@
+{"version":3,"sources":["pipeline/parse.js"],"names":[],"mappings":";;;;;;;;;;;;IAAa;;;;;;;;2EAEI,SAAS;;;;;;uBAIhB;;;;;;;;;;;;;;;;SANG","file":"pipeline/parse.js","sourcesContent":["export class ParseComponent {\n\n  async process( context, next ) {\n\n\n    // call downstream\n    await next();\n\n\n  }\n\n\n}\n"],"sourceRoot":"/source/"}
