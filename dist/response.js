@@ -13,6 +13,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 */
 
 var Response = exports.Response = function () {
+  function Response() {
+    _classCallCheck(this, Response);
+  }
+
   _createClass(Response, [{
     key: "setHeader",
 
@@ -21,7 +25,7 @@ var Response = exports.Response = function () {
     * Sets a response header
     */
     value: function setHeader(name, value) {
-      throw new Error("Not implemented");
+      throw new Error("Not implemented: setHeader");
     }
 
     /**
@@ -36,10 +40,10 @@ var Response = exports.Response = function () {
     * The HTTP status code
     */
     get: function get() {
-      throw new Error("Not implemented");
+      throw new Error("Not implemented: statusCode");
     },
     set: function set(value) {
-      throw new Error("Not implemented");
+      throw new Error("Not implemented: statusCode");
     }
 
     /**
@@ -49,31 +53,20 @@ var Response = exports.Response = function () {
   }, {
     key: "status",
     get: function get() {
-      throw new Error("Not implemented");
+      throw new Error("Not implemented: status");
     },
     set: function set(value) {
-      throw new Error("Not implemented");
+      throw new Error("Not implemented: status");
     }
   }, {
     key: "body",
     get: function get() {
-      throw new Error("Not implemented");
+      throw new Error("Not implemented: body");
     },
     set: function set(value) {
-      throw new Error("Not implemented");
+      throw new Error("Not implemented: body");
     }
-
-    /**
-    * Construction
-    */
-
   }]);
-
-  function Response() {
-    _classCallCheck(this, Response);
-
-    this.statusCode = 404;
-  }
 
   return Response;
 }();

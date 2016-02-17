@@ -6,7 +6,16 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Context = exports.Context = function Context(_ref) {
+/**
+* The request/response context object
+*/
+
+var Context =
+
+/**
+* Construction
+*/
+exports.Context = function Context(_ref) {
   var request = _ref.request;
   var response = _ref.response;
 

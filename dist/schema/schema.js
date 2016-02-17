@@ -3,11 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DefaultProvider = undefined;
+exports.Schema = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _provider = require("../provider");
 
 var _lodash = require("lodash");
 
@@ -17,40 +15,53 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+// the named schemas
+var namedSchemas = {};
+
 /**
-* The default provider, that just operates on arrays
+* The schema class
 */
 
-var DefaultProvider = exports.DefaultProvider = function () {
+var Schema = exports.Schema = function () {
 
   /**
-  * The entities map is a map of entity names to arrays of objects
+  * Constructor
   */
 
-  function DefaultProvider(_ref) {
-    var entityCollections = _ref.entityCollections;
+  function Schema() {
+    _classCallCheck(this, Schema);
 
-    _classCallCheck(this, DefaultProvider);
-
-    this.entityCollections = entityCollections;
+    this.entities = new Map();
   }
 
   /**
-  * Gets a set of entities
+  * Adds an entity schema object
   */
 
 
-  _createClass(DefaultProvider, [{
-    key: "getEntities",
-    value: function getEntities(name) {
-      var entities = this.entityCollections[name];
-      if (!entities) {
-        throw new Error("Entity collection " + name + " not found");
+  _createClass(Schema, [{
+    key: "setEntitySchema",
+    value: function setEntitySchema(entitySchema) {
+      this.entities.set(entitySchema.target, entitySchema);
+    }
+
+    /**
+    * Returns a schema by name
+    */
+
+  }], [{
+    key: "get",
+    value: function get() {
+      var name = arguments.length <= 0 || arguments[0] === undefined ? "default" : arguments[0];
+
+      var schema = namedSchemas[name];
+      if (!schema) {
+        schema = namedSchemas[name] = new Schema();
       }
-      return entities;
+      return schema;
     }
   }]);
 
-  return DefaultProvider;
+  return Schema;
 }();
-//# sourceMappingURL=provider.js.map
+//# sourceMappingURL=schema.js.map

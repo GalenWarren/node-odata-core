@@ -22,7 +22,7 @@ for (var _key3 in _provider) {
   if (_ret === "continue") continue;
 }
 
-var _index = require("./default/index");
+var _index = require("./memory/index");
 
 var _loop2 = function _loop2(_key4) {
   if (_key4 === "default") return "continue";

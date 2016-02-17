@@ -10,36 +10,66 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ParseComponent = exports.ParseComponent = function () {
-  function ParseComponent() {
-    _classCallCheck(this, ParseComponent);
+/**
+* The main service class
+*/
+
+var Service = exports.Service = function () {
+
+  /**
+  * Construction
+  */
+
+  function Service(_ref) {
+    var provider = _ref.provider;
+    var options = _ref.options;
+
+    _classCallCheck(this, Service);
+
+    this.provider = provider;
+    this.options = options;
   }
 
-  _createClass(ParseComponent, [{
-    key: "process",
+  /**
+  * Handles a request in the supplied context
+  */
+
+
+  _createClass(Service, [{
+    key: "handle",
     value: function () {
-      var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(context, next) {
+      var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(context) {
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return next();
+                _context.prev = 0;
+                _context.next = 3;
+                return this.provider.populateResponse(context.request, context.response);
 
-              case 2:
+              case 3:
+                _context.next = 8;
+                break;
+
+              case 5:
+                _context.prev = 5;
+                _context.t0 = _context["catch"](0);
+                throw _context.t0;
+
+              case 8:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[0, 5]]);
       }));
 
-      return function process(_x, _x2) {
+      return function handle(_x) {
         return ref.apply(this, arguments);
       };
     }()
   }]);
 
-  return ParseComponent;
+  return Service;
 }();
-//# sourceMappingURL=parse.js.map
+//# sourceMappingURL=service.js.map

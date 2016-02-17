@@ -1,8 +1,6 @@
 import _ from "lodash";
 
-import {Schema,Pipeline,DefaultProvider,entity,property} from "../../src/index";
-
-debugger;
+import {Schema,Service,MemoryProvider,Request,Response,Context,entity,property} from "../../src/index";
 
 // the entity type
 @entity({
@@ -23,23 +21,39 @@ class Company {
 
 };
 
-debugger;
 const schema = Schema.get();
-console.log(schema);
-debugger;
+//console.log(schema);
 
-const provider = new DefaultProvider({
-  entityCollections: {
-    companies: [
-      new Company({ ticker: "BAC", name: "Bank of America"}),
-      new Company({ ticker: "STI", name: "SunTrust Bank"}),
-      new Company({ ticker: "VNBK", name: "Virginia National Bank"})
-    ]
-  }
+const service = new Service({
+  provider: new MemoryProvider( schema, {
+    entitySets: {
+      companies: [
+        new Company({ ticker: "BAC", name: "Bank of America"}),
+        new Company({ ticker: "STI", name: "SunTrust Bank"}),
+        new Company({ ticker: "VNBK", name: "Virginia National Bank"})
+      ]
+    }
+  })
+});
+
+const context = new Context({
+  request: new Request({
+    url: "/companies?$filter=ticker eq 'BAC'"
+  }),
+  response: new Response()
 });
 
 debugger;
 
-const pipeline = Pipeline.create({ schema, provider });
+service.handle(context).then( () => {
 
-debugger;
+  console.log(context);
+  console.log(JSON.stringify(context.state.parsedQuery, null, " "));
+//  console.log(JSON.stringify(context.state.code, null, " "));
+
+}, err => {
+
+  console.error( err );
+  console.error( err.stack );
+
+});
