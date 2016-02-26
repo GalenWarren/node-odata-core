@@ -49,8 +49,11 @@ var QueryParser = exports.QueryParser = function () {
   * Construction
   */
 
-  function QueryParser(_ref) {
-    var expressionParser = _ref.expressionParser;
+  function QueryParser() {
+    var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    var _ref$expressionParser = _ref.expressionParser;
+    var expressionParser = _ref$expressionParser === undefined ? null : _ref$expressionParser;
 
     _classCallCheck(this, QueryParser);
 
@@ -119,16 +122,6 @@ var QueryParser = exports.QueryParser = function () {
     }
 
     /**
-    * Returns the expression parser to use
-    */
-
-  }, {
-    key: "getExpressionParser",
-    value: function getExpressionParser() {
-      return new _expressionParser.ExpressionParser();
-    }
-
-    /**
     * Handle the $filter operation
     */
 
@@ -140,7 +133,8 @@ var QueryParser = exports.QueryParser = function () {
       var value = _ref8.value;
 
 
-      console.log(value);
+      // get the predicate
+      var predicate = this.expressionParser.parse({ expression: value });
 
       // change transformResult to include a filter operation
       return {

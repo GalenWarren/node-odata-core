@@ -40,7 +40,9 @@ var Provider = exports.Provider = function () {
   * Construction
   */
 
-  function Provider(_ref) {
+  function Provider() {
+    var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
     var queryParser = _ref.queryParser;
 
     _classCallCheck(this, Provider);
@@ -78,7 +80,7 @@ var Provider = exports.Provider = function () {
         }, _callee, this);
       }));
 
-      return function populateResponse(_x, _x2) {
+      return function populateResponse(_x2, _x3) {
         return ref.apply(this, arguments);
       };
     }()
