@@ -1,17 +1,25 @@
+import {follows} from "../../pipeline/index";
+
 import {PipelineComponent} from "../component";
 import {ParseUrlComponent} from "./parseUrl";
 
 /**
 * A pipeline component that parses a url
 */
+@follows(ParseUrlComponent)
 export class ParseQueryComponent extends PipelineComponent {
 
   /**
-  * Dependencies
+  * The main execute method
   */
-  static follows() = [ ParseUrlComponent ];
+  async handle( context, next ) {
 
+    console.log("Start parse query");
 
+    await next();
 
+    console.log("End parse query");
+
+  }
 
 }

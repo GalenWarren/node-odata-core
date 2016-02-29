@@ -2,14 +2,20 @@ import _ from "lodash";
 import toposort from "toposort";
 import Promise from "any-promise";
 
-// a resolved promise used in the terminator
-const resolved = Promise.resolve();
+import {precedesTypes,followsTypes} from "./decorators";
 
 /**
 * The default execute function, does nothing
 */
-function defaultExecute( context ) {
-  return resolved;
+async function pipelineTerminator( context ) {}
+
+/**
+* Returns the dependencies for this component, from metadata
+*/
+function getDependencies( componentType ) {
+
+  return [];
+
 }
 
 /**
@@ -22,36 +28,31 @@ export class Pipeline {
   */
   constructor({ components }) {
 
-    // build the execute function by combining together all the components
-    this.execute = _(components).reduce( ( execute, component  ) => {
+    // build the handle function by combining together all the components
+    this.handle = _(components).reverse().reduce( ( innerExecute, component  ) => {
 
-      return _.wrap( execute, function( func, context ) {
+      return context => component.handle( context, () => innerExecute( context ));
 
-        const next = function() {
-          return Promise.resolve( component.execute(  ));
-        };
+    }, pipelineTerminator );
 
-
-      });
-
-
-    }, defaultExecute );
-
-
-
-    this.component = components;
   }
-
 
   /**
   * Creates a pipeline from a set of component types using the provided container
   */
-  static fromComponentTypes({ componentTypes, container }) {
+  static createComponents({ componentTypes, factory, container }) {
 
+    // get the factory function
+    const componentFactory = factory || ( componentType => container.get(componentType) );
+
+    // get all dependencies (edge nodes)
     const dependencies = _.flatMap(componentTypes, getDependencies );
+
+    // get the components in sorted order
     const sortedComponentTypes = toposort.array( componentTypes, dependencies ).reverse();
-    const components = _.map( sortedComponentTypes, componentType => container.get( componentType ));
-    return new Pipeline({ components });
+
+    // create all the component objects
+    return _.map( sortedComponentTypes, componentFactory );
 
   }
 

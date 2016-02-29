@@ -1,14 +1,18 @@
+import {inject,All} from "aurelia-dependency-injection";
+
+import {Handler} from "./handler";
+
 /**
 * The main service class
 */
+@inject(All.of(Handler))
 export class Service {
 
   /**
   * Construction
   */
-  constructor({ provider, options }) {
-    this.provider = provider;
-    this.options = options;
+  constructor(handlers) {
+    this.handlers = handlers;
   }
 
   /**
@@ -16,23 +20,14 @@ export class Service {
   */
   async handle( context ) {
 
-    try {
-
-      // use the provider to populate the response
-      await this.provider.populateResponse( context.request, context.response );
-    }
-    catch (err) {
-
-      // handle errors kgw!
-      throw err;
-
+    // look for the appropriate handler
+    const handler = _(this.handlers).find( h => h.canHandle( context ));
+    if (!handler) {
+      throw new HttpError(400);
     }
 
-    // check for not found -- kgw put back!
-    /*
-    if (_.isUndefined( context.response.status )) {
-      context.response.status = 404;
-    }*/
+    // handle it
+    await handler.handle( context );
 
   }
 

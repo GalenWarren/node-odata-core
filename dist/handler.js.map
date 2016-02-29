@@ -1,0 +1,1 @@
+{"version":3,"sources":["handler.js"],"names":[],"mappings":";;;;;;;;;;;;IAGa","file":"handler.js","sourcesContent":["/**\n* Handler base class\n*/\nexport class Handler {\n\n  \n}\n"],"sourceRoot":"/source/"}

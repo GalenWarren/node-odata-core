@@ -24,15 +24,22 @@ class Company {
 const schema = Schema.get();
 //console.log(schema);
 
+// create the container, register the schema and provider`
+const container = new Container();
+container.registerInstance( Schema, schema );
+container.registerInstance( Provider, new MemoryProvider( schema, {
+  entitySets: {
+    companies: [
+      new Company({ ticker: "BAC", name: "Bank of America"}),
+      new Company({ ticker: "STI", name: "SunTrust Bank"}),
+      new Company({ ticker: "VNBK", name: "Virginia National Bank"})
+    ]
+  }
+}));
+
+
 const service = new Service({
   provider: new MemoryProvider( schema, {
-    entitySets: {
-      companies: [
-        new Company({ ticker: "BAC", name: "Bank of America"}),
-        new Company({ ticker: "STI", name: "SunTrust Bank"}),
-        new Company({ ticker: "VNBK", name: "Virginia National Bank"})
-      ]
-    }
   })
 });
 

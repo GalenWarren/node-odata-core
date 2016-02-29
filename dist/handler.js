@@ -6,7 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PipelineComponent = exports.PipelineComponent = function PipelineComponent() {
-  _classCallCheck(this, PipelineComponent);
+/**
+* Handler base class
+*/
+
+var Handler = exports.Handler = function Handler() {
+  _classCallCheck(this, Handler);
 };
-//# sourceMappingURL=parse.js.map
+//# sourceMappingURL=handler.js.map
